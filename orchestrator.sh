@@ -4,6 +4,7 @@ KEY_NAME=$2
 TEMPLATE_NAME=$3
 cp -r TEMPLATE/${TEMPLATE_NAME} DEPLOYED/${TEMPLATE_NAME}/${INFRA_NAME}
 cd DEPLOYED/${TEMPLATE_NAME}/${INFRA_NAME}
+pwd
 sed -i "s|<##INFRA_NAME##>|${INFRA_NAME}|g" *
 sed -i "s|<##KEY_NAME##>|${KEY_NAME}|g" *
 terraform init && terraform apply -auto-approve
