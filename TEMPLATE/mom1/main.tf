@@ -17,11 +17,8 @@ resource "aws_subnet" "<##INFRA_NAME##>-pub" {
 	tags = {
 		Name = "<##INFRA_NAME##>-pub"
 	}
-}
 
-provisioner "local-exec" {
-        command = "echo ${self.public_ip} > temp_ip"
-    }
+}
 
 resource "aws_internet_gateway" "<##INFRA_NAME##>-igw" {
 	vpc_id = "${aws_vpc.<##INFRA_NAME##>-vpc.id}"
@@ -76,4 +73,8 @@ resource "aws_instance" "<##INFRA_NAME##>-INSTANCE-WEB" {
 	tags = {
 		Name = "<##INFRA_NAME##>-INSTANCE-WEB"
 	}
+	
+	provisioner "local-exec" {
+        	command = "echo ${self.public_ip} > temp_ip"
+    	}
 }
