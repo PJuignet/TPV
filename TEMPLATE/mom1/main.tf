@@ -61,7 +61,7 @@ resource "aws_security_group" "<##INFRA_NAME##>-SG-WEB" {
 }
 
 resource "aws_instance" "<##INFRA_NAME##>-INSTANCE-WEB" {
-	key_name = "##KEY_NAME##"
+	key_name = "<##KEY_NAME##>"
 	ami = "ami-09e513e9eacab10c1"
 	vpc_security_group_ids = ["${aws_security_group.<##INFRA_NAME##>-SG-WEB.id}"]
 	subnet_id = "${aws_subnet.<##INFRA_NAME##>-pub.id}"
