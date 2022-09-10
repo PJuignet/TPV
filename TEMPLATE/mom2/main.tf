@@ -180,7 +180,7 @@ resource "aws_security_group" "<##INFRA_NAME##>-SG-WEB" {
 }
 
 resource "aws_instance" "<##INFRA_NAME##>-INSTANCE-ADM" {
-	key_name = "##KEY_NAME##"
+	key_name = "<##KEY_NAME##>"
 	ami = "ami-09e513e9eacab10c1"
 	vpc_security_group_ids = ["${aws_security_group.<##INFRA_NAME##>-SG-ADM.id}"]
 	subnet_id = "${aws_subnet.<##INFRA_NAME##>-pub.id}"
@@ -193,7 +193,7 @@ resource "aws_instance" "<##INFRA_NAME##>-INSTANCE-ADM" {
 }
 
 resource "aws_instance" "<##INFRA_NAME##>-INSTANCE-RPROXY" {
-        key_name = "##KEY_NAME##"
+        key_name = "<##KEY_NAME##>"
         ami = "ami-09e513e9eacab10c1"
         vpc_security_group_ids = ["${aws_security_group.<##INFRA_NAME##>-SG-RPROXY.id}", "${aws_security_group.<##INFRA_NAME##>-SG-SQUID.id}"]
         subnet_id = "${aws_subnet.<##INFRA_NAME##>-pub.id}"
@@ -225,7 +225,7 @@ resource "aws_network_interface_sg_attachment" "<##INFRA_NAME##>-INSTANCE-WEB-IP
 }
 
 resource "aws_instance" "<##INFRA_NAME##>-INSTANCE-WEB" {
-        key_name = "##KEY_NAME##"
+        key_name = "<##KEY_NAME##>"
         ami = "ami-09e513e9eacab10c1"
 	instance_type = "t2.micro"
 	user_data = "${file("httpd.sh")}"
