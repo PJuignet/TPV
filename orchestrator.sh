@@ -2,11 +2,15 @@
 INFRA_NAME=$1
 KEY_NAME=$2
 TEMPLATE_NAME=$3
+mkdir DEPLOYED/${TEMPLATE_NAME}
+echo "${TEMPLATE_NAME} deployed"
 cp -r TEMPLATE/${TEMPLATE_NAME} DEPLOYED/${TEMPLATE_NAME}/${INFRA_NAME}
+echo "cp succes"
 cd DEPLOYED/${TEMPLATE_NAME}/${INFRA_NAME}
 pwd
 sed -i "s|<##INFRA_NAME##>|${INFRA_NAME}|g" *
 sed -i "s|<##KEY_NAME##>|${KEY_NAME}|g" *
+echo "sed"
 terraform init && terraform apply -auto-approve
 IP=$(cat temp_ip)
 
